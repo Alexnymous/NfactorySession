@@ -8,3 +8,7 @@
  $_SESSION ['Nom'] = "Dupont";
  $_SESSION ['Prenom'] = "Ducon";
  $_SESSION ['age'] = 69;
+
+ ?>
+
+<a href="index.php">INdex</a>
