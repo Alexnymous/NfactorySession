@@ -8,13 +8,13 @@ if isset(($_POST['nom']) && ($_POST['prenom']) && ($_POST['login']) && ($_POST['
     $mdp = $_POST['mdp'];
 }
 
-$pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+$pass_hache = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
 // Vérification des identifiants
 $req = $bdd->prepare('SELECT id FROM membres WHERE pseudo = :pseudo AND pass = :pass');
 $req->execute(array(
-    'pseudo' => $pseudo,
-    'pass' => $pass_hache));
+    'login' => $login,
+    'mdp' => $mdp_hache));
 
 $resultat = $req->fetch();
 
@@ -26,7 +26,7 @@ else
 {
     session_start();
     $_SESSION['id'] = $resultat['id'];
-    $_SESSION['pseudo'] = $pseudo;
+    $_SESSION['login'] = $login;
     echo 'Vous êtes connecté !';
 }
 
